@@ -14,15 +14,19 @@ The separation of this contract from the NameManager (see below) is so that the 
 
 #### _Key functions_
 **setName** - Sets a name to an associated account
+
 `function setName(string memory name, address account) public`
 
 **names** - Returns the last associated account of a name
+
 `function names(string memory name) public view returns (address)`
 
 **removeManager** - Sets an address as a manager for NameRegistry
+
 `function addManager(address manager) public onlyOwner`
 
 **removeManager** - Removes an address as a manager for NameRegistry
+
 `function removeManager(address manager) public onlyOwner`
 
 ### NameManager
@@ -38,30 +42,39 @@ Key assumptions for this contract include:
 
 #### _Key functions_
 **setClaim** - Sets a claim to later register ownership of a name
+
 `function setClaim(bytes32 claimHash) public`
 
 **registerName** - Registers ownership of a name to a calling account
+
 `function registerName(string calldata name, bytes calldata secretSauce) public`
 
 **renewName** - Renews ownership of a name to an existing owner account
+
 `function renewName(string calldata name) public`
 
 **unstakeTokens** - Unstakes tokens for an account that no longer owns a name
+
 `function unstakeTokens(string calldata name) public`
 
 **checkNameOwner** - Checks current name ownership based on registration expiration timestamp
+
 `function checkNameOwner(string calldata name) public view returns (address owner)`
 
 **checkClaimHash** - Provides a claim hash based on a name, secret, and caller account
+
 `function checkClaimHash(string calldata name, bytes calldata secretSauce) public view returns (bytes32 claimHash)`
 
 **checkNameAvailability** - Checks if a name is currently available for registration
+
 `function checkNameAvailability(string calldata name) public view returns (bool available)`
 
 **checkNameValidity** - Checks if a name is valid: greater than 3 char and less than 31 characters
+
 `function checkNameValidity(string calldata name) public pure returns (bool valid)`
 
 **checkNameValidity** - Provides the staking fee for registering a name
+
 `function checkNameStakeFee(string calldata name) public pure returns (uint256 nameStakeFee)`
 
 ### NameToken
